@@ -17,13 +17,13 @@ public class UserDao {
 	private String jdbcPassword = "3183";
 	private String jdbcDriver = "com.mysql.jdbc.Driver";
 	
-	private static final String INSERT_USERS_SQL = "INSERT INTO users"+" (name,email,country)"
-	+ " (?, ?, ?);";
+	private static final String INSERT_USERS_SQL = "INSERT INTO users"+"  (name,email,country)"
+	+ " VALUES (?, ?, ?);";
 	
 	private static final String SELECT_USERS_BY_ID = "SELECT id,name,email,country from users where id = ?;" ;
 	private static final String SELECT_ALL_USERS = "SELECT * from users;" ;
 	private static final String DELETE_USERS_SQL = "DELETE from users where id= ?;" ;
-	private static final String UPDATE_USERS_SQL = "UPDATE users set name = ? , email = ? , country = ? where id = ? " ;
+	private static final String UPDATE_USERS_SQL ="update users set name = ?,email= ?, country =? where id = ?;" ;
 	
 	public UserDao() {
 		
@@ -127,7 +127,7 @@ public class UserDao {
 	
 public boolean UpdateUser( User user ) throws SQLException {
 		
-		boolean rowUpdated = false  ;
+		boolean rowUpdated   ;
 		System.out.println(UPDATE_USERS_SQL);
 		try(Connection connection = getConnection(); 
 				PreparedStatement Statement = connection.prepareStatement(UPDATE_USERS_SQL)){
